@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฟอร์มจองโต๊ะ</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            padding: 20px;
+            text-align: center;
+            background-image: url('รูป/Rectangle.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            font-size: 30px;
+            color: #fff;
+        }
+
+        label {
+            text-align: left;
+            font-size: 1em;
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            padding: 10px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            background-color: #1c6b98;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 200px;
+            transition: background-color 0.3s;
+            border-radius: 20px;
+            background: rgb(38,85,115);
+            background: radial-gradient(circle, rgba(38,85,115,1) 0%, rgba(1,46,139,1) 100%);
+            
+        }
+
+        button:hover {
+            background-color: #155e7f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="หน้าเลือกโต๊ะ.html" method="GET">
+            <label for="guests">ระบุบชื่อผู้จอง</label>
+            <input type="text" id="name" name="name" placeholder="ระบุชื่อผู้จอง" required>
+
+            <label for="guests">จำนวนคน</label>
+            <input type="number" id="guests" name="guests" placeholder="จำนวนคน" min="1" max="20" required>
+
+            <label for="phone">เบอร์ผู้จอง</label>
+            <input type="tel" id="phone" name="phone" placeholder="เบอร์ผู้จอง (เช่น 0812345678)" 
+                   pattern="^0[0-9]{9}$" required>
+
+            <button type="submit">ยืนยัน</button>
+        </form>
+    </div>
+</body>
+</html>

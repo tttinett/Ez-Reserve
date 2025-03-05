@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ชำระเงิน</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a4b7f;
+            color: #fff;
+            text-align: center;
+            background-image: url('รูป/Rectangle.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        img {
+            margin: 20px 0;
+            max-width: 500px;
+        }
+
+        button {
+            padding: 20px 30px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            background: rgb(38,85,115);
+            background: radial-gradient(circle, rgba(38,85,115,1) 0%, rgba(1,46,139,1) 100%);
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 20px;
+        }
+
+        button:hover {
+            background: rgb(38,85,115);
+            background: radial-gradient(circle, rgba(38,85,115,1) 0%, rgba(1,46,139,1) 100%);
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+<body>
+    <h1>โปรดทำการชำระเงิน</h1>
+    <img src="https://e7.pngegg.com/pngimages/1006/79/png-clipart-qr-code-qr-code-qr-thumbnail.png" alt="QR Code">
+    <p> *กรุณาทำรายการภายใน 5  นาที</p>
+    <button onclick="paymentStatus(true)"> 500,000 บาท</button>
+    <button onclick="paymentStatus(false)">ยกเลิก</button>
+
+    <script>
+        function paymentStatus(success) {
+            if (success) {
+                window.location.href = "จ่ายเงินสำเร็จ.html";
+            } else {
+                window.location.href = "จ่ายเงินไม่สำเร็จ.html";
+            }
+        }
+    </script>
+</body>
+</html>

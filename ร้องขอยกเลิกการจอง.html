@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฟอร์มขอคืนเงิน</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('รูป/Rectangle.png');
+            background-size: cover; /* ปรับขนาดให้เต็มจอ */
+            background-position: center; /* จัดให้อยู่ตรงกลาง */
+            background-repeat: no-repeat; /* ไม่ให้ภาพซ้ำ */
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 700px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+        }
+        .header-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .header {
+            background-color: #ddd;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+        .content {
+            text-align: left;
+            background-color: #eee;
+            padding: 15px;
+            border-radius: 5px;
+            justify-content: center;
+        }
+        img {
+            width: 130px;
+            height: 120px;
+            border-radius: 5px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 15px;
+        }
+        .button {
+            background: rgb(255,255,255);
+            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(97,97,97,1) 100%);
+            color: rgb(0, 0, 0);
+            padding: 20px 50px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background: rgb(255,255,255);
+            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(97,97,97,1) 100%);
+            transform: scale(1.08);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-section">
+            <img src="รูป/hippo.png" alt="Hippo">
+            <div>
+                <div class="header">คุณหมูเด้ง เขาเขียว</div> 
+                <div class="header">Gmail: mamamoodeng@gmail.com</div>
+            </div>
+        </div>
+        <div class="content">
+            <p><strong>เนื้อหา:</strong> เรียน [ชื่อร้าน] ข้าพเจ้าขอแจ้งความประสงค์ในการขอคืนเงินสำหรับการทำรายการที่มีรายละเอียดดังนี้:</p>
+            <p>การจอง: [โต๊ะที่...]</p>
+            <p>ชื่อบัญชีผู้ใช้งาน: [ชื่อบัญชี]</p>
+            <p>วันที่ทำรายการ: [วันที่ทำรายการ]</p>
+            <p>จำนวนเงิน: [จำนวนเงินที่จ่าย]</p>
+            <label for="reason">เหตุผลเพื่อคืนเงิน:</label>
+            <select id="reason" onchange="toggleOtherReason()">
+                <option value="เปลี่ยนแผนกะทันหัน">เปลี่ยนแผนกะทันหัน</option>
+                <option value="มีปัญหาด้านสุขภาพ">มีปัญหาด้านสุขภาพ</option>
+                <option value="จำนวนคนเปลี่ยนแปลง">จำนวนคนเปลี่ยนแปลง</option>
+                <option value="สภาพอากาศไม่เอื้ออำนวย">สภาพอากาศไม่เอื้ออำนวย</option>
+                <option value="ลืมว่าทำการจองไว้แล้ว">ลืมว่าทำการจองไว้แล้ว</option>
+                <option value="อื่นๆ">อื่นๆ</option>
+            </select>
+            <input type="text" id="otherReason" class="hidden" placeholder="โปรดระบุเหตุผลของคุณ">
+            <p>กรุณาช่วยตรวจสอบและดำเนินการคืนเงินให้ข้าพเจ้าผ่านช่องทาง วิธีที่ต้องการ โอนเข้าบัญชี</p>
+            <p>หากต้องการข้อมูลเพิ่มเติม กรุณาติดต่อกลับที่ [เบอร์โทร/อีเมลของคุณ]</p>
+            <br>
+            <p>ขอขอบคุณสำหรับความช่วยเหลือ และหวังว่าจะได้รับการดำเนินการโดยเร็ว</p>
+            <p>ขอแสดงความนับถือ [ชื่อของคุณ]</p>
+        </div>
+        <div class="button-container">
+            <button class="button" onclick="validateForm()">ตกลง</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleOtherReason() {
+            var reasonSelect = document.getElementById("reason");
+            var otherReasonInput = document.getElementById("otherReason");
+            if (reasonSelect.value === "อื่นๆ") {
+                otherReasonInput.classList.remove("hidden");
+            } else {
+                otherReasonInput.classList.add("hidden");
+                otherReasonInput.value = "";
+            }
+        }
+
+        function validateForm() {
+            var reason = document.getElementById("reason").value;
+            var otherReason = document.getElementById("otherReason").value;
+            if (reason === "อื่นๆ" && otherReason.trim() === "") {
+                alert("โปรดระบุเหตุผลเพิ่มเติม");
+                return;
+            }
+            // เปลี่ยนหน้าไปยัง URL ถัดไป
+            window.location.href = "อัพโหลด Qrcode สำหรับคืนเงิน.html"; // เปลี่ยน URL ตามที่ต้องการ
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> user_3 </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-image: url('รูป/Rectangle.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        p {
+            margin: 20px;
+        }
+
+        .name {
+            background: #d3d3d3;
+            border-radius: 10px;
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .container-box {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            max-width: 1000px;
+            width: 100%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .info-box {
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .btn-back, .btn-finish {
+            background: #d3d3d3;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .btn-back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+        }
+
+        .btn-finish {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .button-container {
+            position: absolute;
+            bottom: 0;
+            left: 78%;
+            transform: translateX(-50%);
+            margin-bottom: 130px;
+        }
+
+        .button {
+            background: rgb(38,85,115);
+            background: radial-gradient(circle, rgba(38,85,115,1) 0%, rgba(1,46,139,1) 100%);
+            color: white;
+            padding: 20px 50px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+<body>
+
+    <button class="btn-back" onclick="history.back()">⮌</button>
+
+    <div class="container-box" id="user3-container">
+        <div class="profile-section">
+            <img src="รูป/ไก่.jpg" alt="โปรไฟล์" class="profile-pic">
+            <div class="info-box">
+                <div class="name">คุณไก่ย่าง ห้าดาว</div>
+                <div class="name">Gmail : gaiyahg449933.gmail.com</div>
+            </div>
+        </div>
+        
+        <p><strong>หมายเลขโต๊ะ :</strong> 3 </p>
+        <p><strong>วันที่จอง :</strong> xx/xx/xxxx</p>
+    </div>
+
+    <div class="button-container">
+        <button class="button" onclick="validateForm()">ตกลง</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // ตรวจสอบว่า user_3 ได้จองโต๊ะหรือยัง
+            const bookedUser3 = localStorage.getItem("user_3_booked") === "true";
+
+            // ซ่อนการ์ดถ้าโต๊ะถูกจองแล้ว
+            if (bookedUser3) {
+                document.getElementById("user3-container").style.display = "none";
+            }
+        });
+
+        function validateForm() {
+            // เมื่อกด "ตกลง" ให้บันทึกสถานะการจองใน localStorage
+            localStorage.setItem("user_3_booked", "true"); // การจองโต๊ะของ user_3
+
+            // กลับไปยังหน้าหลัก
+            window.location.href = 'index.html'; // หรือกลับไปหน้าเดิม
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จองโต๊ะ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a4b7f;
+            color: white;
+            text-align: center;
+            background-image: url('รูป/Rectangle.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        h1 {
+            color: #ffffff;
+            font-size: 50px;
+            margin-bottom: 30px;
+        }
+        .day-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(97,97,97,0.4) 100%);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .day-container p {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 15px;
+        }
+        .day-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            justify-items: center;
+            padding: 10px;
+        }
+        .day-btn {
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            border: none;
+            background-color: white;
+            color: black;
+            transition: 0.3s;
+        }
+        .day-btn:hover {
+            background-color: #ddd;
+        }
+        .selected {
+            background-color: gold !important;
+            color: black !important;
+            font-weight: bold;
+        }
+        .button-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .button {
+            padding: 15px 40px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            background: radial-gradient(circle, rgba(38,85,115,1) 0%, rgba(1,46,139,1) 100%);
+            cursor: pointer;
+            color: rgb(255, 255, 255);
+            transition: 0.3s;
+        }
+        .button.cancel {
+            background: rgb(255,255,255);
+            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(97,97,97,1) 100%);
+            color: rgb(0, 0, 0);
+        }
+        .button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>จองโต๊ะ</h1>
+        <div class="day-container">
+            <p>เลือกวันที่จอง</p>
+            <div class="day-grid">
+                <script>
+                    for (let i = 1; i <= 31; i++) {
+                        document.write(`<button class="btn btn-light day-btn" data-day="${i}" onclick="selectDay(${i})">${i}</button>`);
+                    }
+                </script>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="button cancel" onclick="cancelSelection()">ยกเลิก</button>
+            <button class="button" onclick="confirmSelection()">ยืนยัน</button>
+        </div>
+    </div>
+    <script>
+        let selectedButton = null;
+        let selectedDay = null;
+        
+        function selectDay(day) {
+            if (selectedButton) {
+                selectedButton.classList.remove("selected");
+            }
+            selectedButton = document.querySelector(`.day-btn[data-day='${day}']`);
+            selectedButton.classList.add("selected");
+            selectedDay = day;
+        }
+        
+        function confirmSelection() {
+            if (selectedDay) {
+                window.location.href = "คิวอาร์โค้ด.html?day=" + selectedDay;
+            } else {
+                alert("กรุณาเลือกวันก่อนยืนยัน");
+            }
+        }
+        
+        function cancelSelection() {
+            if (selectedButton) {
+                selectedButton.classList.remove("selected");
+            }
+            selectedButton = null;
+            selectedDay = null;
+        }
+    </script>
+</body>
+</html>

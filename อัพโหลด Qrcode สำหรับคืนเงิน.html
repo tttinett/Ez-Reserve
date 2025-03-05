@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ชำระเงิน</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a4b7f;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('รูป/Rectangle.png');
+            background-size: cover; /* ปรับขนาดให้เต็มจอ */
+            background-position: center; /* จัดให้อยู่ตรงกลาง */
+            background-repeat: no-repeat; /* ไม่ให้ภาพซ้ำ */
+        }
+        h2 {
+            position: absolute;
+            top: 20px; /* ปรับตำแหน่งจากขอบบนของจอ */
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 100%;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+            color: black;
+            margin-top: 190px; /* เพิ่มช่องว่างที่ด้านล่าง */
+        }
+        
+
+        .custom-file-upload {
+            display: inline-block;
+            background-color: #f68b1e;
+            color: white;
+            background-image: url('รูป/Group 3.png');
+            background-size: cover; /* ปรับขนาดให้เต็มจอ */
+            background-position: center; /* จัดให้อยู่ตรงกลาง */
+            background-repeat: no-repeat; /* ไม่ให้ภาพซ้ำ */
+            padding: 150px 150px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #e07716;
+        }
+
+        #uploadImage {
+            display: none;
+        }
+
+        #previewContainer {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .image-preview {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            width: 150px;
+            position: relative;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        .remove-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-top: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .remove-btn:hover {
+            background-color: darkred;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            margin-top: 100px;
+        }
+        .button {
+            flex: 1;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            background: rgb(38,85,115);
+            background: radial-gradient(circle, rgba(38,85,115,1) 0%, rgba(1,46,139,1) 100%);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 5px;
+        }
+
+        .button.cancel {
+            background-color: red;
+        }
+
+        .button:hover {
+            transform: scale(1.08);
+            background: rgb(38,85,115);
+            background: radial-gradient(circle, rgba(38,85,115,1) 0%, rgba(1,46,139,1) 100%);
+        }
+    </style>
+</head>
+<body>
+    <h2>อัพโหลด QR Code สำหรับคืนเงิน</h2>
+    <div class="container">
+        <!-- ปุ่มอัปโหลด -->
+        <label for="uploadImage" class="custom-file-upload" id="uploadLabel"></label>
+        <input type="file" id="uploadImage" accept="image/*" multiple>
+        <div id="previewContainer"></div>
+    </div>
+
+    <!-- ปุ่มยืนยันการชำระเงิน -->
+    <div class="button-container">
+        <button class="button" onclick="paymentStatus(true)">ยืนยันการชำระเงิน</button>
+    </div>
+</body>
+    <script>
+        document.getElementById("uploadImage").addEventListener("change", function(event) {
+            var files = event.target.files;
+            var previewContainer = document.getElementById("previewContainer");
+            var uploadLabel = document.getElementById("uploadLabel");
+
+            previewContainer.innerHTML = ""; // ล้างก่อนอัปโหลดใหม่
+
+            if (files.length > 0) {
+                uploadLabel.style.display = "none"; // ซ่อนปุ่มอัปโหลด
+            }
+
+            Array.from(files).forEach((file, index) => {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var div = document.createElement("div");
+                    div.classList.add("image-preview");
+
+                    var img = document.createElement("img");
+                    img.src = e.target.result;
+
+                    var name = document.createElement("p");
+                    name.textContent = file.name;
+                    name.style.fontSize = "12px";
+
+                    var removeBtn = document.createElement("button");
+                    removeBtn.textContent = "ลบรูป";
+                    removeBtn.classList.add("remove-btn");
+                    removeBtn.onclick = function() {
+                        previewContainer.removeChild(div);
+                        
+                        // ถ้าลบรูปทั้งหมดแล้ว แสดงปุ่มอัปโหลดกลับมา
+                        if (previewContainer.children.length === 0) {
+                            uploadLabel.style.display = "inline-block";
+                        }
+                    };
+
+                    div.appendChild(img);
+                    div.appendChild(name);
+                    div.appendChild(removeBtn);
+                    previewContainer.appendChild(div);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        function paymentStatus(status) {
+            if (status) {
+                alert("ยืนยันการชำระเงินเรียบร้อย");
+            }
+        }
+        function paymentStatus(status) {
+            if (status) {
+                window.location.href = "อัพโหลด Qrcode เสร็จสิ้น กรุณารอการตอบกลับจากทางร้าน.html";  // เปลี่ยนไปที่หน้าอื่น
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>เว็บไซต์สำหรับจองโต๊ะ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a4b7f;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            padding: 20px;
+            text-align: center;
+            background-image: url('รูป/Rectangle.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        
+        .restaurant-card {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+        .restaurant-card:hover, .restaurant-card.selected {
+            transform: scale(1.05);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        .restaurant-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+        .restaurant-card p {
+            margin: 0;
+            font-size: 20px;
+            flex-grow: 1;
+            font-weight: bold;
+        }
+        .btn-book {
+            display: block;
+            margin: 30px auto;
+            padding: 12px 35px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
+            max-width: 300px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .btn-book.active {
+            pointer-events: auto;
+            opacity: 1;
+        }
+        .btn-book:hover {
+            transform: scale(1.08);
+            background: rgb(38,85,115);
+            background: radial-gradient(circle, rgba(38,85,115,1) 0%, rgba(1,46,139,1) 100%);
+        
+        }
+
+        /* ปุ่มแอดมินเป็นรูป */
+        .btn-admin {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-admin img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+        .btn-admin:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title"> EZ Reserve </h1> <br>
+        <h3 class="title"> เว็บไซต์สำหรับจองโต๊ะ </h3>
+        
+        <div class="restaurant-card" data-link="ชามเขียว.html?restaurant=chamkiew">
+            <img src="รูป/Logo_1ชามเขียว.png" alt="ร้านชามเขียว">
+            <p>ร้านชามเขียว</p>
+        </div>
+
+        <div class="restaurant-card" data-link="ตองเอียว.html">
+            <img src="รูป/โลโก้ตองเอี่ยว.jpg" alt="ร้านตองเอี่ยว">
+            <p>ร้านตองเอี่ยว</p>
+        </div>
+
+        <div class="restaurant-card" data-link="บาร์คนพาย.html?restaurant=barkonpai">
+            <img src="รูป/โลโก้บาร์คนพาย.jpg" alt="ร้านบาร์คนพาย">
+            <p>ร้านบาร์คนพาย</p>
+        </div>
+
+        <a href="#" class="btn-book" id="book-btn">จองโต๊ะเลย!</a>
+    </div>
+
+    <!-- ปุ่มแอดมินเป็นรูป -->
+    <a href="ลงทะเบียนแอดมิน.html" class="btn-admin">
+        <img src="รูป/admin_img.png" alt="แอดมิน">
+    </a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const restaurantCards = document.querySelectorAll(".restaurant-card");
+            const bookBtn = document.getElementById("book-btn");
+            let selectedLink = "";
+
+            restaurantCards.forEach(card => {
+                card.addEventListener("click", function() {
+                    restaurantCards.forEach(c => c.classList.remove("selected"));
+                    this.classList.add("selected");
+                    selectedLink = this.getAttribute("data-link");
+                    bookBtn.classList.add("active");
+                    bookBtn.href = selectedLink;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

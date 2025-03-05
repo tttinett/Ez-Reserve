@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฟอร์มเข้าสู่ระบบ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a4b7f;
+            color: #fff;
+            text-align: center;
+            background-image: url('รูป/Rectangle.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            text-align: left;
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 5px;
+            margin-top: 50px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button {
+            padding: 20px 50px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            background: rgb(38,85,115);
+            background: radial-gradient(circle, rgba(38,85,115,1) 0%, rgba(1,46,139,1) 100%);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 250px;
+        }
+
+        .button.cancel {
+            background-color: red;
+        }
+
+        .button:hover {
+            opacity: 0.8;
+        }
+
+        .register {
+            font-size: 0.9em;
+            text-align: left;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+
+        .register:hover {
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <form action="หน้าเลือกโต๊ะ.html" method="POST" id="loginForm">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="ระบุชื่อผู้ใช้" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="ระบุรหัสผ่าน" required>
+
+            <a href="หน้า_register.html" class="register" target="_blank">Register</a> <!-- ลิงก์ไปหน้าลงทะเบียน -->
+        </form>
+
+        <button class="button" type="button" onclick="submitForm()">ยืนยัน</button> <!-- กดปุ่มจะไปหน้าใหม่ -->
+    </div>
+
+    <script>
+        function submitForm() {
+            // ไปยังหน้า "หน้าหลักแอดมิน.html" เมื่อกดปุ่ม "ยืนยัน"
+            window.location.href = "หน้าหลักแอดมิน.html";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เลือกโต๊ะ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a4b7f;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            background-image: url('รูป/Rectangle.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            font-size: 50px;
+            margin-top: 10px;
+        }
+
+        .table-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .table-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .table {
+            background: transparent;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .table:hover {
+            transform: translateY(-5px);
+        }
+
+        .table img {
+            max-width: 40%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .table p {
+            margin: 0;
+            font-size: 1.3em;
+        }
+
+        .selected img {
+            content: url('รูป/Chair_white.png');
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .button-wrapper {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            background-color: #f68b1e;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+            background: rgb(38,85,115);
+            background: radial-gradient(circle, rgba(38,85,115,1) 0%, rgba(1,46,139,1) 100%);
+        
+        }
+        .button-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .button {
+            padding: 15px 40px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            background: radial-gradient(circle, rgba(38,85,115,1) 0%, rgba(1,46,139,1) 100%);
+            cursor: pointer;
+            color: rgb(255, 255, 255);
+            transition: 0.3s;
+        }
+        .button.cancel {
+            background: rgb(255,255,255);
+            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(97,97,97,1) 100%);
+            color: rgb(0, 0, 0);
+        }
+        .button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>จองโต๊ะ</h1>
+    <div class="table-container">
+        <div class="table-grid">
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    let tableGrid = document.querySelector(".table-grid");
+                    for (let i = 1; i <= 15; i++) {
+                        let table = document.createElement("div");
+                        table.className = "table";
+                        table.innerHTML = `
+                            <img src="รูป/Chair.png" alt="โต๊ะ ${i}">
+                            <p>โต๊ะที่ ${i}</p>
+                        `;
+                        table.onclick = () => selectTable(table, i);
+                        tableGrid.appendChild(table);
+                    }
+                }); 
+            </script>
+        </div>
+    </div>
+    <div class="button-wrapper">
+        <div class="button-container">
+            <button class="button cancel" onclick="cancelSelection()">ยกเลิก</button>
+            <button class="button" onclick="confirmTable()">ยืนยัน</button>
+        </div>
+    </div>
+
+    <script>
+        let selectedTable = null;
+
+        function selectTable(tableElement, tableNumber) {
+            selectedTable = tableNumber;
+            document.querySelectorAll('.table').forEach(table => table.classList.remove('selected'));
+            tableElement.classList.add('selected');
+        }
+
+        function confirmTable() {
+            if (selectedTable) {
+                window.location.href = `เลือกวันจอง.html?table=${selectedTable}`;
+            } else {
+                alert("กรุณาเลือกโต๊ะก่อน");
+            }
+        }
+
+        function cancelSelection() {
+            selectedTable = null;
+            document.querySelectorAll('.table').forEach(table => table.classList.remove('selected'));
+        }
+    </script>
+</body>
+</html>

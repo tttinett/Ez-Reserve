@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a4b7f;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('รูป/Rectangle.png');
+            background-size: cover; /* ปรับขนาดให้เต็มจอ */
+            background-position: center; /* จัดให้อยู่ตรงกลาง */
+            background-repeat: no-repeat; /* ไม่ให้ภาพซ้ำ */
+        }
+        h2 {
+            position: absolute;
+            top: 20px; /* ปรับตำแหน่งจากขอบบนของจอ */
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 100%;
+        }
+        img {
+            width: 300px;
+            height: 300px;
+            margin-bottom: 70px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button {
+            padding: 20px 20px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            background: rgb(38,85,115);
+            background: radial-gradient(circle, rgba(38,85,115,1) 0%, rgba(1,46,139,1) 100%);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 5px;
+        }
+
+        .button.cancel {
+            background-color: red;
+        }
+
+        .button:hover {
+            transform: scale(1.08);
+            background: rgb(38,85,115);
+            background: radial-gradient(circle, rgba(38,85,115,1) 0%, rgba(1,46,139,1) 100%);
+        
+        }
+
+    </style>
+</head>
+<body>
+    <h2>อัพโหลด Qrcode เสร็จสิ้น  <br>
+        กรุณารอการตอบกลับจากทางร้าน</h2>
+    <img src="รูป/pngtree-green-checkmark-error-image_2284668-removebg-preview 1.png" alt="ภาพตัวอย่าง">
+    <button class="button" onclick="goToHome()">ยืนยัน</button>
+
+    <script>
+        function goToHome() {
+            window.location.href = "หน้าแรก.html";
+        }
+    </script>
+</body>
+</html>
