@@ -17,7 +17,7 @@ This project is part of the Frontend Software Development and Software Requireme
 - JAVASCRIPT <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" width="20">
 - BOOTSTRAP <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1200px-Bootstrap_logo.svg.png" width="20">
 # คู่มีการใช้งาน
-[คลิกที่นี่เพื่อไปยังเว็บไซต์](https://docs.google.com/document/d/1VcWVGnNocdj8cnd7LPAYgEZAc2r5CK6C1CJ9ZVlr2eE/edit?tab=t.0)
+[คลิกที่นี่เพื่อไปยังคู่มือการใช้งาน](https://docs.google.com/document/d/1VcWVGnNocdj8cnd7LPAYgEZAc2r5CK6C1CJ9ZVlr2eE/edit?tab=t.0)
 # Team Job position (ตำแหน่งงานของทีม)
 | Student ID | Name | Position |
 |----------|----------|----------|
